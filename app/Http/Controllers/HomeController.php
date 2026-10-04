@@ -21,7 +21,7 @@ class HomeController extends Controller
 
     public function student($id)
     {
-        $student = Student::findOrFail(5);
+        $student = Student::findOrFail($id);
         return view('student', 
         ['student' => $student]);
     }

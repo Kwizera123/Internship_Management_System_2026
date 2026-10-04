@@ -10,9 +10,8 @@
 
 <body>
   <h1>Student Profile</h1>
-  <p>First Name: {{ $student->first_name }}</p>
-  <p>Last Name: {{ $student->last_name }}</p>
-  <p>Student Type: {{ $student->student_type }}</p>
-</body>
+  <p>Name: {{ $student->first_name }} {{ $student->last_name }}</p>
 
-</html>
+  <p>Student Type: {{ $student->student_type }}</p>
+  <p>Institution: {{ $student->institution->name }}</p>
+</body></html>
