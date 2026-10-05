@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Institution;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 class SchoolClass extends Model
@@ -20,5 +20,9 @@ class SchoolClass extends Model
         return $this->belongsTo(Institution::class);
     }
 
+    public function streams(): HasMany
+    {
+        return $this->hasMany(Stream::class);
+    }
 
 }

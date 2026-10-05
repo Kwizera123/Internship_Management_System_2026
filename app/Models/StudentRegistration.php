@@ -12,6 +12,7 @@ class StudentRegistration extends Model
         'student_id',
         'academic_year_id',
         'program_id',
+        'stream_id',
     ];
 
     public function student(): BelongsTo
@@ -27,5 +28,10 @@ class StudentRegistration extends Model
     public function program(): BelongsTo
     {
         return $this->belongsTo(Program::class);
+    }
+
+    public function stream(): BelongsTo
+    {
+        return $this->belongsTo(Stream::class);
     }
 }
