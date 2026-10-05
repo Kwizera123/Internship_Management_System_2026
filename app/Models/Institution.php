@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
+
 class Institution extends Model
 {
     protected $fillable = [
@@ -16,6 +17,11 @@ class Institution extends Model
     public function students(): HasMany
     {
         return $this->hasMany(Student::class);
+    }
+
+    public function faculties(): HasMany
+    {
+        return $this->hasMany(Faculty::class);
     }
 
 }

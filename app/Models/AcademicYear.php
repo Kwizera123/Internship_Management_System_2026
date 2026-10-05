@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\StudentRegistration;
 
 class AcademicYear extends Model
 {
@@ -12,6 +14,9 @@ class AcademicYear extends Model
         'end_date',
     ];
     //
-
+public function registrations(): HasMany
+    {
+        return $this->hasMany(StudentRegistration::class);
+    }
 
 }
