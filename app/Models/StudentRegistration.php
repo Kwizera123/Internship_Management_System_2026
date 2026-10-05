@@ -10,6 +10,7 @@ class StudentRegistration extends Model
     protected $fillable = [
         'student_id',
         'academic_year_id',
+        'program_id',
     ];
 
     public function student(): BelongsTo
@@ -20,5 +21,10 @@ class StudentRegistration extends Model
     public function academicYear(): BelongsTo
     {
         return $this->belongsTo(AcademicYear::class);
+    }
+
+    public function program(): BelongsTo
+    {
+        return $this->belongsTo(Program::class);
     }
 }
