@@ -17,7 +17,7 @@ class Payment extends Model
         'verified_at',
     ];
 
- public   function studentFee() : BelongsTo
+ public function studentFee() : BelongsTo
     {
         return $this->belongsTo(StudentFee::class);
     }
