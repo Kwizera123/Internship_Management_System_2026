@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Institution;
 use App\Models\StudentRegistration;
+use App\Models\StudentFee;
+
 
 
 
@@ -28,6 +30,11 @@ class Student extends Model
     public function registrations(): HasMany
     {
         return $this->hasMany(StudentRegistration::class);
+    }
+
+    public function fees(): HasMany
+    {
+        return $this->hasMany(StudentFee::class);
     }
 
 }
