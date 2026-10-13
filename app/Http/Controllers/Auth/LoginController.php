@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -24,7 +25,12 @@ class LoginController extends Controller
                 if (Auth::attempt($validated)) {
                     $request->session()->regenerate();
 
-                    return redirect()->intended('/dashboard');
+                    if (Auth::user()->isAdmin()) {
+                        return redirect()->route('admin.dashboard');
+                    } else {
+                        return redirect()->route('student.dashboard');
+                    }
+
                 } 
 
                 return back()->withErrors([
