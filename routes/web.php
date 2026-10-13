@@ -21,11 +21,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
           ->middleware('auth');
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])
-          ->middleware('auth')
+          ->middleware(['auth', 'role:admin'])
           ->name('admin.dashboard');
 
 Route::get('/student/dashboard', [DashboardController::class, 'student'])
-          ->middleware('auth')
+          ->middleware(['auth', 'role:student'])
           ->name('student.dashboard');
 
 Route::post('/logout', [LoginController::class, 'logout'])
