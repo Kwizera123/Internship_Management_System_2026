@@ -20,7 +20,7 @@
       </p>
 
       <p class="mt-3 text-3xl font-bold text-gray-900">
-        -
+        {{ $totalStudents }}
       </p>
 
       <p class="mt-2 text-sm text-gray-500">
@@ -35,7 +35,7 @@
       </p>
 
       <p class="mt-3 text-3xl font-bold text-gray-900">
-        -
+        {{ $totalInstitutions }}
       </p>
 
       <p class="mt-2 text-sm text-gray-500">
@@ -76,13 +76,13 @@
   </div>
 
   <div class="mt-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-        <h2 class="text-lg font-semibold text-gray-900">
-            Administration
-        </h2>
+    <h2 class="text-lg font-semibold text-gray-900">
+      Administration
+    </h2>
 
-        <p class="mt-2 text-sm text-gray-500">
-            Use the sidebar to navigate the management system.
-        </p>
-    </div>
+    <p class="mt-2 text-sm text-gray-500">
+      Use the sidebar to navigate the management system.
+    </p>
+  </div>
 
 @endsection

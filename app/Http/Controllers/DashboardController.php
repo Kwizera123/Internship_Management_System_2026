@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
+use App\Models\Institution;
 
 class DashboardController extends Controller
 {
@@ -19,7 +21,13 @@ class DashboardController extends Controller
 
     public function admin()
     {
-        return view('admin.dashboard');
+        $totalStudents = Student::count();
+        $totalInstitutions = Institution::count();
+
+        return view('admin.dashboard', [
+            'totalStudents' => $totalStudents,
+            'totalInstitutions' => $totalInstitutions,
+        ]);
 
     }// End Method
 
