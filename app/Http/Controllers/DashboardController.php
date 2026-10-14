@@ -8,7 +8,12 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard');
+        $user = auth()->user();
+
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.dashboard');
+        }
+        return redirect()->route('student.dashboard');
     }
     //end Method
 

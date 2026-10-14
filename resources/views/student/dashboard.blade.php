@@ -1,19 +1,13 @@
-```html
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IMS Student Dashboard</title>
-</head>
+@section('title', 'Student Dashboard')
 
-<body>
-  <h1>Student Dashboard</h1>
+@section('content')
+  <h2>Student Dashboard</h2>
 
   <p>Welcome to your Internship Management System account.</p>
 
-  <h2>My Internship</h2>
+  <h3>My Internship</h3>
 
   <ul>
     <li>My Profile</li>
@@ -21,7 +15,9 @@
     <li>My Registration Fees</li>
     <li>My Payment History</li>
   </ul>
-</body>
 
-</html>
-```
+  <form action="/logout" method="POST">
+    @csrf
+    <button type="submit">Logout</button>
+  </form>
+@endsection
