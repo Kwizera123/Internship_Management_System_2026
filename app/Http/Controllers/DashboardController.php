@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Institution;
+use App\Models\Internship;
 
 class DashboardController extends Controller
 {
@@ -23,10 +24,12 @@ class DashboardController extends Controller
     {
         $totalStudents = Student::count();
         $totalInstitutions = Institution::count();
+        $totalInterships = Internship::count();
 
         return view('admin.dashboard', [
             'totalStudents' => $totalStudents,
             'totalInstitutions' => $totalInstitutions,
+            'totalInterships' => $totalInterships,
         ]);
 
     }// End Method

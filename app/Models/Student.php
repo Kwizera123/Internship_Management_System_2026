@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Institution;
 use App\Models\StudentRegistration;
 use App\Models\StudentFee;
+use App\Models\Internship;
 
 
 
@@ -37,4 +38,8 @@ class Student extends Model
         return $this->hasMany(StudentFee::class);
     }
 
+   public function internships(): HasMany
+{
+    return $this->hasMany(Internship::class);
+}
 }
