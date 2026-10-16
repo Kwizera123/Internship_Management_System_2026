@@ -24,6 +24,10 @@ Route::get('/admin/dashboard', [DashboardController::class, 'admin'])
           ->middleware(['auth', 'role:admin'])
           ->name('admin.dashboard');
 
+Route::get('/admin/students', [DashboardController::class, 'students'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.students');
+
 Route::get('/student/dashboard', [DashboardController::class, 'student'])
           ->middleware(['auth', 'role:student'])
           ->name('student.dashboard');

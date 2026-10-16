@@ -64,7 +64,7 @@
       </p>
 
       <p class="mt-3 text-3xl font-bold text-gray-900">
-        —
+        {{ $totalPayments }}
       </p>
 
       <p class="mt-2 text-sm text-gray-500">

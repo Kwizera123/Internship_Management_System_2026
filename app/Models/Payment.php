@@ -56,8 +56,6 @@ class Payment extends Model
 
         ); 
 
-        
-        
-
+    
     }
 }
