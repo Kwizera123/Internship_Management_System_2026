@@ -37,12 +37,19 @@ class DashboardController extends Controller
 
     }// End Method
 
-    public function students()
+    public function students(Request $request)
     {
-        $students = Student::all();
+        $search = $request->input('search');
+
+        $students = Student::where(function ($query) use ($search) {
+        $query->where('first_name', 'like', "%{$search}%")
+        ->orWhere('last_name', 'like', "%{$search}%")
+        ->orWhere('student_number', 'like', "%{$search}%");
+        })->get();
 
         return view('admin.students', [
             'students' => $students,
+            'search' => $search,
         ]);
     }// End Method
 

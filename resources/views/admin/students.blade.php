@@ -17,6 +17,15 @@
     </h2>
     <p class="mt-2 text-sm text-gray-500">
       Your student record will appear here.
+    </p>
+
+    <form action="{{ route('admin.students') }}" method="GET" class="mt-6 flex gap-3">
+      <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Searchby name or student number..."
+        class="w-full rounded-lg border border-gray-300 px-4 py-3">
+      <button class="rounded-lg bg-slate-900 px-5 py-3 text-white hover:big-slate-700">
+        Search
+      </button>
+    </form>
 
     <div class="overflow-x-auto">
       <table class="w-full text-left text-sm">
@@ -45,13 +54,17 @@
               </td>
 
               <td class="px-4 py-4 text-gray-700">
-                —
+                {{ $student->institution?->name ?? 'Not assigned' }}
               </td>
             </tr>
           @empty
             <tr>
               <td colspan="4" class="px-4 py-8 text-center text-gray-500">
-                No students have been registered yet.
+                @if ($search)
+                  No students found matching "{{ $search }}".
+                @else
+                  No students have been registered yet.
+                @endif
               </td>
             </tr>
           @endforelse
@@ -59,6 +72,5 @@
       </table>
     </div>
 
-    </p>
   </div>
 @endsection

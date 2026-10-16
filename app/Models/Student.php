@@ -38,8 +38,10 @@ class Student extends Model
         return $this->hasMany(StudentFee::class);
     }
 
-   public function internships(): HasMany
-{
-    return $this->hasMany(Internship::class);
-}
+    public function internships(): HasMany
+    {
+        return $this->hasMany(Internship::class);
+    }
+
+    
 }
