@@ -28,6 +28,14 @@ Route::get('/admin/students', [DashboardController::class, 'students'])
     ->middleware(['auth', 'role:admin'])
     ->name('admin.students');
 
+Route::get('/admin/students/create', [DashboardController::class, 'createStudent'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.students.create');
+
+Route::post('/admin/students', [DashboardController::class, 'storeStudent'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.students.store');
+
 Route::get('/student/dashboard', [DashboardController::class, 'student'])
           ->middleware(['auth', 'role:student'])
           ->name('student.dashboard');

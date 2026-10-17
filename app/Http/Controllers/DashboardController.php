@@ -53,6 +53,32 @@ class DashboardController extends Controller
         ]);
     }// End Method
 
+    public function createStudent()
+    {
+        $institutions = Institution::all();
+
+        return view('admin.dashboard-create', [
+            'institutions' => $institutions,
+        ]);
+    }
+
+    public function storeStudent(Request $request)
+    {
+        $validated = $request->validate([
+            'student_number' => ['required', 'string', 'max:50', 'unique:students,student_number'],
+            'first_name' => ['required', 'string', 'max:100'],
+            'last_name' => ['required', 'string', 'max:100'],
+            'student_type' => ['required', 'in:secondary,university'],
+            'institution_id' => ['required', 'exists:institutions,id'],
+        ]);
+
+        $student = Student::create($validated);
+
+        return redirect()
+            ->route('admin.students')
+            ->with('success', 'Student registered successfully.');
+    }
+
     public function student()
     {
         return view('student.dashboard');

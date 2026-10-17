@@ -20,6 +20,7 @@ class Student extends Model
         'first_name',
         'last_name',
         'student_type',
+        'institution_id',
     ];
     //
 

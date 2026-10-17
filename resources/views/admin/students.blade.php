@@ -2,15 +2,22 @@
 @section('title', 'Students')
 @section('content')
 
-  <div class="mb-8">
-    <h1 class="text-2xl font-bold text-gray-900">
-      Student Management
-    </h1>
+  <div class="mb-8 flex items-center justify-between">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900">
+        Student Management
+      </h1>
 
-    <p class="mt-2 text-sm text-gray-500">
-      View and manage registered students.
-    </p>
+      <p class="mt-2 text-sm text-gray-500">
+        View and manage registered students.
+      </p>
+    </div>
+
+    <a href="#" class="rounded-lg bg-slate-900 px-5 py-3 text-sm font-medium text-white hover:bg-slate-700">
+      + Add Student
+    </a>
   </div>
+
   <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
     <h2 class="text-lg font-semibold text-gray-900">
       Registered Students
