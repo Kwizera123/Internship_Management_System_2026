@@ -77,7 +77,17 @@ class DashboardController extends Controller
         return redirect()
             ->route('admin.students')
             ->with('success', 'Student registered successfully.');
-    }
+    }// End method
+
+    public function editStudent(Student $student)
+    {
+        $institutions = Institution::all();
+
+        return view('admin.students-edit', [
+            'student' => $student,
+            'institutions' => $institutions,
+        ]);
+    }// end method
 
     public function student()
     {

@@ -36,6 +36,13 @@ Route::post('/admin/students', [DashboardController::class, 'storeStudent'])
     ->middleware(['auth', 'role:admin'])
     ->name('admin.students.store');
 
+Route::get('/admin/students/{student}/edit', [DashboardController::class, 'editStudent'])
+    ->middleware(['auth','role:admin'])
+    ->name('admin.students.edit');
+
+
+
+
 Route::get('/student/dashboard', [DashboardController::class, 'student'])
           ->middleware(['auth', 'role:student'])
           ->name('student.dashboard');
