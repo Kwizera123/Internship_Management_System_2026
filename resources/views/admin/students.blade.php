@@ -84,7 +84,7 @@
                 </button>
 
 
-                <a href="#"
+                <a href="{{ route('admin.students.edit', $student) }}"
                   class="ml-2 inline-block rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100">
                   Edit
                 </a>

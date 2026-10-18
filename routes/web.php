@@ -40,6 +40,10 @@ Route::get('/admin/students/{student}/edit', [DashboardController::class, 'editS
     ->middleware(['auth','role:admin'])
     ->name('admin.students.edit');
 
+Route::put('/admin/students/{student}', [DashboardController::class, 'updateStudent'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.students.update');
+
 
 
 

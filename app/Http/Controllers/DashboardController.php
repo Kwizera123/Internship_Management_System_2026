@@ -89,6 +89,31 @@ class DashboardController extends Controller
         ]);
     }// end method
 
+    public function updateStudent(Request $request, Student $student)
+    {
+        $validated = $request->validate([
+            'student_number' => [
+                'required',
+                'string',
+                'max:50',
+                'unique:students,student_number,' . $student->id,
+            ],
+
+            'first_name' => ['required', 'string', 'max:100'],
+            'last_name' => ['required', 'string', 'max:100'],
+            'student_type' => ['required', 'in:secondary,university'],
+            'institution_id' => ['required', 'exists:institutions,id'],
+        ]);
+
+        $student->update($validated);
+
+        return redirect()
+            ->route('admin.students')
+            ->with('success', 'Student update successfully');
+    }
+
+
+
     public function student()
     {
         return view('student.dashboard');
