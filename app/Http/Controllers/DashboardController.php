@@ -109,8 +109,8 @@ class DashboardController extends Controller
 
         return redirect()
             ->route('admin.students')
-            ->with('success', 'Student update successfully');
-    }
+            ->with('success', 'Student updated successfully');
+    } // End method
 
 
 

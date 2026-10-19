@@ -37,8 +37,11 @@
         <label for="student_number" class="mb-2 block text-sm font-medium text-gray-700">
           Student Number
         </label>
-        <input type="text" name="student_number" id="student_number" placeholder="e.g. STU-002"
-          class="w-full rounded-lg border border-gray-300 px-4 py-3">
+        <input type="text" name="student_number" id="student_number" value="{{ old('student_number') }}"
+          placeholder=" e.g.STU-002" class=" w-full rounded-lg border border-gray-300 px-4 py-3">
+        @error('student_number')
+          <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
       </div>
 
       <div class="mt-6">
@@ -46,8 +49,11 @@
           First Name
         </label>
 
-        <input type="text" id="first_name" name="first_name" placeholder="Enter first name"
-          class="w-full rounded-lg border border-gray-300 px-4 py-3">
+        <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}"
+          placeholder=" Enter first name" class="w-full rounded-lg border border-gray-300 px-4 py-3">
+        @error('first_name')
+          <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
       </div>
 
 
@@ -56,8 +62,13 @@
           Last Name
         </label>
 
-        <input type="text" id="last_name" name="last_name" placeholder="Enter last name"
+        <input type="text" id="last_name" value="{{ old('last_name') }}" name="last_name" placeholder="Enter last name"
           class="w-full rounded-lg border border-gray-300 px-4 py-3">
+
+        @error('last_name')
+          <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
+
       </div>
 
 
@@ -71,9 +82,15 @@
           <select id="student_type" name="student_type"
             class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3">
             <option value="">Select student type</option>
-            <option value="Secondary">Secondary School</option>
-            <option value="University">University</option>
+            <option value="secondary" @selected(old('student_type') === 'secondary')>Secondary School</option>
+            <option value="university" @selected(old('student_type') === 'university')>University</option>
           </select>
+
+
+          @error('student_type')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+          @enderror
+
         </div>
 
         {{-- Institution --}}
@@ -87,11 +104,17 @@
             <option value="">Select institution</option>
 
             @foreach ($institutions as $institution)
-              <option value="{{ $institution->id }}">
+              <option value="{{ $institution->id }}" @selected((string) old('institution_id') === (string) $institution->id)>
                 {{ $institution->name }}
               </option>
             @endforeach
           </select>
+
+
+          @error('institution_id')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+          @enderror
+
         </div>
 
         <div class="mt-8 flex items-center gap-3">
