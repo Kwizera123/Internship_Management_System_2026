@@ -45,7 +45,7 @@ class DashboardController extends Controller
         $query->where('first_name', 'like', "%{$search}%")
         ->orWhere('last_name', 'like', "%{$search}%")
         ->orWhere('student_number', 'like', "%{$search}%");
-        })->get();
+        })->paginate(10);
 
         return view('admin.students', [
             'students' => $students,
@@ -70,6 +70,14 @@ class DashboardController extends Controller
             'last_name' => ['required', 'string', 'max:100'],
             'student_type' => ['required', 'in:secondary,university'],
             'institution_id' => ['required', 'exists:institutions,id'],
+        ],[
+            'student_number.required' => 'Please enter the student number.',
+            'student_number.unique' => 'This student number is already registered.',
+            'first_name.required' => 'Please enter the student\'s first name.',
+            'last_name.required' => 'Please enter the student\'s last name.',
+            'student_type.required' => 'Please select a student type.',
+            'institution_id.required' => 'Please select an institution.',
+            'institution_id.exists' => 'The selected institution is invalid.',
         ]);
 
         $student = Student::create($validated);
@@ -103,6 +111,14 @@ class DashboardController extends Controller
             'last_name' => ['required', 'string', 'max:100'],
             'student_type' => ['required', 'in:secondary,university'],
             'institution_id' => ['required', 'exists:institutions,id'],
+        ], [
+            'student_number.required' => 'Please enter the student number.',
+            'student_number.unique' => 'This student number is already registered.',
+            'first_name.required' => 'Please enter the student\'s first name.',
+            'last_name.required' => 'Please enter the student\'s last name.',
+            'student_type.required' => 'Please select a student type.',
+            'institution_id.required' => 'Please select an institution.',
+            'institution_id.exists' => 'The selected institution is invalid.',
         ]);
 
         $student->update($validated);
