@@ -10,8 +10,15 @@
     <p class="mt-2 text-gray-600">
       Enter the details of the institution you want to register.
     </p>
+    @if ($errors->any())
+      <div class="mt-4 rounded-lg bg-red-100 p-4 text-red-700">
+        @foreach ($errors->all() as $error)
+          <p>{{ $error }}</p>
+        @endforeach
+      </div>
+    @endif
 
-    <form action="#" method="POST" class="mt-8 space-y-6">
+    <form action="{{ route('admin.institutions.store') }}" method="POST" class="mt-8 space-y-6">
 
       @csrf
 
@@ -20,7 +27,7 @@
           Institution Name
         </label>
 
-        <input type="text" name="name" placeholder="Enter institution name"
+        <input type="text" name="name" value="{{ old('name') }}" placeholder="Enter institution name"
           class="w-full rounded-lg border border-gray-300 px-4 py-3">
       </div>
 
@@ -31,8 +38,12 @@
 
         <select name="type" class="w-full rounded-lg border border-gray-300 px-4 py-3">
           <option value="">Select institution type</option>
-          <option value="secondary_school">Secondary School</option>
-          <option value="university">University</option>
+          <option value="secondary_school" @selected(old('type') === 'secondary_school')>
+            Secondary School
+          </option>
+          <option value="university" @selected(old('type') === 'university')>
+            University
+          </option>
         </select>
       </div>
 

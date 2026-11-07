@@ -6,6 +6,19 @@
     <h1 class="text-2xl font-bold text-gray-900">
       Institution Management
     </h1>
+
+    @if (session('success'))
+      <div class="mt-4 rounded-lg bg-green-100 p-4 text-green-800">
+        {{ session('success') }}
+      </div>
+    @endif
+
+    @if (session('error'))
+      <div class="mt-4 rounded-lg bg-red-100 p-4 text-red-800">
+        {{ session('error') }}
+      </div>
+    @endif
+
     <a href="{{ route('admin.institutions.create') }}"
       class="mt-4 inline-block rounded-lg bg-slate-900 px-5 py-3 text-white hover:bg-slate-700">
       + Add Institution
@@ -23,6 +36,7 @@
           <tr>
             <th class="px-6 py-4">Institution Name</th>
             <th class="px-6 py-4">Institution Type</th>
+            <th class="px-6 py-4">Actions</th>
           </tr>
         </thead>
 
@@ -37,12 +51,34 @@
                     {{ $institution->type === 'secondary_school'
             ? 'Secondary School'
             : 'University' 
-                                                                                   }}
+                                                                                                                                                                                                           }}
                   </td>
+
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-2">
+
+                      <a href="{{ route('admin.institutions.edit', $institution->id) }}"
+                        class="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+                        Edit
+                      </a>
+
+                      <form action="{{ route('admin.institutions.destroy', $institution->id) }}" method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this institution?')">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700">
+                          Delete
+                        </button>
+                      </form>
+
+                    </div>
+                  </td>
+
                 </tr>
           @empty
             <tr>
-              <td colspan="2" class="px-6 py-4 text-center">
+              <td colspan="3" class="px-6 py-4 text-center">
                 No institutions registered yet.
               </td>
             </tr>

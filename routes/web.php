@@ -48,9 +48,26 @@ Route::get('/admin/institutions', [DashboardController::class, 'institutions'])
     ->middleware(['auth', 'role:admin'])
     ->name('admin.institutions');
 
+Route::get('/admin/institutions/{institution}/edit', [DashboardController::class, 'editInstitution'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.institutions.edit');
+
 Route::get('/admin/institutions/create', [DashboardController::class, 'createInstitution'])
     ->middleware(['auth', 'role:admin'])
     ->name('admin.institutions.create');
+
+Route::post('/admin/institutions', [DashboardController::class, 'storeInstitution'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.institutions.store');
+
+Route::put('/admin/institutions/{institution}', [DashboardController::class, 'updateInstitution'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.institutions.update');
+
+Route::delete('/admin/institutions/{institution}', [DashboardController::class, 'destroyInstitution'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.institutions.destroy');
+
 
 
 

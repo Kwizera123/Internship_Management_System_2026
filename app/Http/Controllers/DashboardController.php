@@ -196,7 +196,61 @@ class DashboardController extends Controller
     }
 
     public function createInstitution()
-{
-    return view('admin.institutions-create');
-}
+    {
+        return view('admin.institutions-create');
+    }
+
+    public function storeInstitution(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'type' => ['required', 'in:secondary_school,university'],
+        ]);
+
+        Institution::create($validated);
+
+        return redirect()
+            ->route('admin.institutions')
+            ->with('success', 'Institution registered successfully.');
+    }
+
+    public function editInstitution(Institution $institution)
+    {
+            return view('admin.institutions-edit', [
+                'institution' => $institution,
+            ]);
+    } 
+
+    public function updateInstitution(Request $request, Institution $institution)
+        {
+            $validated = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'type' => ['required', 'in:secondary_school,university'],
+            ]);
+
+            $institution->update($validated);
+
+            return redirect()
+                ->route('admin.institutions')
+                ->with('success', 'Institution updated successfully.');
+        }
+
+        public function destroyInstitution(Institution $institution)
+        {
+            if (
+                $institution->students()->exists() ||
+                $institution->faculties()->exists() ||
+                $institution->schoolClasses()->exists()
+            ) {
+                return redirect()
+                    ->route('admin.institutions')
+                    ->with('error', 'This institution cannot be deleted because it has associated records.');
+            }
+
+            $institution->delete();
+
+            return redirect()
+                ->route('admin.institutions')
+                ->with('success', 'Institution deleted successfully.');
+        }
 }
