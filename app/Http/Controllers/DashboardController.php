@@ -41,6 +41,20 @@ class DashboardController extends Controller
     {
         $search = $request->input('search');
 
+        $sortBy = $request->input('sort_by', 'student_number');
+
+        $direction = $request->input('direction', 'asc');
+
+        $allowedColumns = ['student_number', 'first_name'];
+
+        if (! in_array($sortBy, $allowedColumns, true)) {
+            $sortBy = 'student_number';
+        }
+
+        if (! in_array($direction, ['asc', 'desc'], true)) {
+            $direction = 'asc';
+        } 
+
         $students = Student::where(function ($query) use ($search) {
         $query->where('first_name', 'like', "%{$search}%")
         ->orWhere('last_name', 'like', "%{$search}%")

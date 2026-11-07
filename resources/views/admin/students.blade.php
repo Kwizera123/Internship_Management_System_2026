@@ -34,13 +34,41 @@
       Your student record will appear here.
     </p>
 
-    <form action="{{ route('admin.students') }}" method="GET" class="mt-6 flex gap-3">
-      <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Searchby name or student number..."
+
+    <form action="{{ route('admin.students') }}" method="GET" class="mt-6 flex flex-wrap gap-3">
+
+      {{-- Search students --}}
+      <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search by name or student number..."
         class="w-full rounded-lg border border-gray-300 px-4 py-3">
-      <button class="rounded-lg bg-slate-900 px-5 py-3 text-white hover:big-slate-700">
+
+      {{-- Choose sorting column --}}
+      <select name="sort_by" class="rounded-lg border border-gray-300 px-4 py-3">
+        <option value="student_number" @selected(($sortBy ?? 'student_number') === 'student_number')>
+          Student Number
+        </option>
+
+        <option value="first_name" @selected(($sortBy ?? 'student_number') === 'first_name')>
+          First Name
+        </option>
+      </select>
+
+      {{-- Choose sorting direction --}}
+      <select name="direction" class="rounded-lg border border-gray-300 px-4 py-3">
+        <option value="asc" @selected(($direction ?? 'asc') === 'asc')>
+          Ascending
+        </option>
+
+        <option value="desc" @selected(($direction ?? 'asc') === 'desc')>
+          Descending
+        </option>
+      </select>
+
+      <button type="submit" class="rounded-lg bg-slate-900 px-5 py-3 text-white hover:bg-slate-700">
         Search
       </button>
+
     </form>
+
 
     <div class="overflow-x-auto">
       <table class="w-full text-left text-sm">
