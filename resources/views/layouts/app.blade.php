@@ -28,11 +28,13 @@
         </a>
         @if(auth()->user()->isAdmin())
 
-          <a href="#" class="block rounded-lg px-4 py-3 text-sm text-slate-300 hover:bg-slate-800 hover:text-white">
+          <a href="{{ route('admin.institutions') }}"
+            class="block rounded-lg px-4 py-3 text-sm text-slate-300 hover:bg-slate-800 hover:text-white">
             Institutions
           </a>
 
-          <a href="#" class="block rounded-lg px-4 py-3 text-sm text-slate-300 hover:bg-slate-800 hover:text-white">
+          <a href="{{ route('admin.students') }}"
+            class="block rounded-lg px-4 py-3 text-sm text-slate-300 hover:bg-slate-800 hover:text-white">
             Student
           </a>
 

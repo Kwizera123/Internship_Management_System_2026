@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('title', 'Students')
+
+@if ($errors->any())
+  <div class="mb-4 rounded-lg bg-red-100 p-4 text-red-700">
+    @foreach ($errors->all() as $error)
+      <p>{{ $error }}</p>
+    @endforeach
+  </div>
+@endif
+
 @section('content')
 
   <div class="mb-8 flex items-center justify-between">

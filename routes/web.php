@@ -44,6 +44,13 @@ Route::put('/admin/students/{student}', [DashboardController::class, 'updateStud
     ->middleware(['auth', 'role:admin'])
     ->name('admin.students.update');
 
+Route::get('/admin/institutions', [DashboardController::class, 'institutions'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.institutions');
+
+Route::get('/admin/institutions/create', [DashboardController::class, 'createInstitution'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.institutions.create');
 
 
 

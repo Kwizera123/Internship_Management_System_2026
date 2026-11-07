@@ -39,6 +39,14 @@ class DashboardController extends Controller
 
     public function students(Request $request)
     {
+        $request->validate([
+            'institution_id' => ['nullable', 'integer', 'exists:institutions,id'],
+            'student_type' => ['nullable', 'in:secondary,university'],
+        ], [
+            'institution_id.exists' => 'The selected institution does not exist.',
+            'student_type.in' => 'Please select either Secondary School or University.',
+        ]);
+
         $search = $request->input('search');
 
         $institutionId = $request->input('institution_id');
@@ -177,4 +185,18 @@ class DashboardController extends Controller
     {
         return view('student.dashboard');
     }
+
+    public function institutions()
+    {
+        $institutions = Institution::orderBy('name')->get();
+        
+        return view('admin.institutions', [
+            'institutions' => $institutions,
+        ]);
+    }
+
+    public function createInstitution()
+{
+    return view('admin.institutions-create');
+}
 }
