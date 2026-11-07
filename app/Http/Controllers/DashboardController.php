@@ -41,6 +41,10 @@ class DashboardController extends Controller
     {
         $search = $request->input('search');
 
+        $institutionId = $request->input('institution_id');
+
+        $studentType = $request->input('student_type');
+
         $sortBy = $request->input('sort_by', 'student_number');
 
         $direction = $request->input('direction', 'asc');
@@ -59,13 +63,38 @@ class DashboardController extends Controller
         $query->where('first_name', 'like', "%{$search}%")
         ->orWhere('last_name', 'like', "%{$search}%")
         ->orWhere('student_number', 'like', "%{$search}%");
-        })->paginate(10);
+        })
+
+        ->when($institutionId, function ($query) use ($institutionId) {
+            $query->where('institution_id', $institutionId);
+         })
+
+         ->when($studentType, function ($query) use ($studentType) {
+            $query->where('student_type', $studentType);
+        })
+
+       ->when($sortBy === 'student_number', function ($query) use ($direction) {
+            $query->orderByRaw("CAST(SUBSTRING(student_number, 5) AS UNSIGNED) {$direction}");
+        })
+        ->when($sortBy === 'first_name', function ($query) use ($direction) {
+            $query->orderBy('first_name', $direction);
+        })
+
+
+        ->paginate(10)
+        ->withQueryString();
+
+        $institutions = Institution::orderBy('name')->get();
 
         return view('admin.students', [
             'students' => $students,
             'search' => $search,
+            'sortBy' => $sortBy,
+            'direction' => $direction,
+            'institutions' => $institutions,
         ]);
-    }// End Method
+    }
+    // End Method
 
     public function createStudent()
     {

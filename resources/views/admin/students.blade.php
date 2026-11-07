@@ -63,6 +63,30 @@
         </option>
       </select>
 
+      {{-- Filter by institution --}}
+      <select name="institution_id" class="rounded-lg border border-gray-300 px-4 py-3">
+        <option value="">All Institutions</option>
+
+        @foreach ($institutions as $institution)
+          <option value="{{ $institution->id }}" @selected((string) request('institution_id') === (string) $institution->id)>
+            {{ $institution->name }}
+          </option>
+        @endforeach
+      </select>
+
+      {{-- Filter by student type --}}
+      <select name="student_type" class="rounded-lg border border-gray-300 px-4 py-3">
+        <option value="">All Student Types</option>
+
+        <option value="secondary" @selected(request('student_type') === 'secondary')>
+          Secondary School
+        </option>
+
+        <option value="university" @selected(request('student_type') === 'university')>
+          University
+        </option>
+      </select>
+
       <button type="submit" class="rounded-lg bg-slate-900 px-5 py-3 text-white hover:bg-slate-700">
         Search
       </button>
