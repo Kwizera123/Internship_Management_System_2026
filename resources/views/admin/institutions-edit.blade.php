@@ -55,6 +55,11 @@
         Update Institution
       </button>
 
+      <a href="{{ route('admin.institutions') }}"
+        class="rounded-lg bg-red-600 border border-gray-300 px-5 py-3 text-white hover:bg-red-400">
+        Cancel
+      </a>
+
     </form>
 
   </div>

@@ -186,14 +186,25 @@ class DashboardController extends Controller
         return view('student.dashboard');
     }
 
-    public function institutions()
-    {
-        $institutions = Institution::orderBy('name')->get();
-        
-        return view('admin.institutions', [
-            'institutions' => $institutions,
-        ]);
-    }
+    public function institutions(Request $request)
+        {
+            $search = $request->input('search');
+            $type = $request->input('type');
+
+            $institutions = Institution::query()
+                ->when($search, function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->when($type, function ($query) use ($type) {
+                    $query->where('type', $type);
+                })
+                ->orderBy('name')
+                ->get();
+
+            return view('admin.institutions', [
+                'institutions' => $institutions,
+            ]);
+        }
 
     public function createInstitution()
     {
