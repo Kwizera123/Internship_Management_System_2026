@@ -199,7 +199,8 @@ class DashboardController extends Controller
                     $query->where('type', $type);
                 })
                 ->orderBy('name')
-                ->get();
+                ->paginate(10)
+                ->withQueryString();
 
             return view('admin.institutions', [
                 'institutions' => $institutions,

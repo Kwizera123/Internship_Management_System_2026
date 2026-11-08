@@ -82,7 +82,7 @@
                     {{ $institution->type === 'secondary_school'
             ? 'Secondary School'
             : 'University' 
-                                                                                                                                                                                                                                                                                                                   }}
+                                                                                                                                                                                                                                                                                                                                                                                                                   }}
                   </td>
 
                   <td class="px-6 py-4">
@@ -109,16 +109,24 @@
                 </tr>
           @empty
             <tr>
-              <td colspan="3" class="px-6 py-4 text-center">
-                No institutions registered yet.
+              <td colspan="3" class="px-6 py-4 text-center text-red-500">
+                @if (request()->filled('search') || request()->filled('type'))
+                  No institutions match your search or filters.
+                @else
+                  No institutions registered yet.
+                @endif
               </td>
             </tr>
           @endforelse
         </tbody>
 
+
       </table>
 
     </div>
 
+    <div class="mt-6">
+      {{ $institutions->links() }}
+    </div>
   </div>
 @endsection
