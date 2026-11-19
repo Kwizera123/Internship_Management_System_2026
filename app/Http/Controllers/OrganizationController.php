@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Organization;
+
+class OrganizationController extends Controller
+{
+    public function index()
+    {
+        $organizations = Organization::orderBy('name')
+            ->paginate(10);
+
+        return view('admin.organizations', [
+            'organizations' => $organizations,
+        ]);
+    }
+
+    public function create()
+    {
+        return view('admin.organizations-create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255', 'unique:organizations,name'],
+            'type' => ['required', 'in:company,government,ngo,educational_institution,other'],
+            'email' => ['nullable', 'email', 'max:255'],
+            'phone' => ['nullable', 'string', 'max:30'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'website' => ['nullable', 'url', 'max:255'],
+            'description' => ['nullable', 'string'],
+        ]);
+
+        Organization::create($validated);
+
+        return redirect()
+            ->route('admin.organizations')
+            ->with('success', 'Organization registered successfully.');
+    }
+
+}

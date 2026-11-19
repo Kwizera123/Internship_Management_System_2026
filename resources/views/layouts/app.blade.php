@@ -33,6 +33,11 @@
             Institutions
           </a>
 
+          <a href="{{ route('admin.organizations') }}"
+            class="block rounded-lg px-4 py-3 text-sm text-slate-300 hover:bg-green-400 hover:text-white">
+            Organizations
+          </a>
+
           <a href="{{ route('admin.students') }}"
             class="block rounded-lg px-4 py-3 text-sm text-slate-300 hover:bg-slate-800 hover:text-white">
             Student

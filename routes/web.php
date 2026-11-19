@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrganizationController;
 
 
 Route::get('/', [HomeController::class, 'index']);
@@ -68,6 +69,19 @@ Route::delete('/admin/institutions/{institution}', [DashboardController::class, 
     ->middleware(['auth', 'role:admin'])
     ->name('admin.institutions.destroy');
 
+
+
+Route::get('/admin/organizations', [OrganizationController::class, 'index'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.organizations');
+    
+Route::get('/admin/organizations/create', [OrganizationController::class, 'create'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.organizations.create');
+
+Route::post('/admin/organizations', [OrganizationController::class, 'store'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.organizations.store');
 
 
 
