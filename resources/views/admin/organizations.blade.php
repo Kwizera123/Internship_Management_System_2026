@@ -8,6 +8,12 @@
       Organization Management
     </h1>
 
+    @if (session('success'))
+      <div class="mt-4 rounded-lg bg-green-100 p-4 text-green-700">
+        {{ session('success') }}
+      </div>
+    @endif
+
     <p class="mt-2 text-gray-600">
       Manage organizations registered in the Internship Management System.
     </p>
