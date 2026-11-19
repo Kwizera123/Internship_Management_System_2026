@@ -91,6 +91,12 @@ Route::put('/admin/organizations/{organization}', [OrganizationController::class
     ->middleware(['auth', 'role:admin'])
     ->name('admin.organizations.update');
 
+Route::delete('/admin/organizations/{organization}', [OrganizationController::class, 'destroy'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.organizations.destroy');
+
+
+
 
 
 Route::get('/student/dashboard', [DashboardController::class, 'student'])

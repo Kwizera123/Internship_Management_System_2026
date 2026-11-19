@@ -68,4 +68,14 @@ class OrganizationController extends Controller
                 ->with('success', 'Organization updated successfully.');
         } 
 
+
+    public function destroy(Organization $organization)
+        {
+            $organization->delete();
+
+            return redirect()
+                ->route('admin.organizations')
+                ->with('success', 'Organization deleted successfully.');
+        }
+
 }

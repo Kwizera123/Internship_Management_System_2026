@@ -54,11 +54,23 @@
                 {{ $organization->phone }}
               </td>
 
-              <td class="px-6 py-4">
+              <td class="space-x-2 whitespace-nowrap px-6 py-4">
+
                 <a href="{{ route('admin.organizations.edit', $organization->id) }}"
                   class="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
                   Edit
                 </a>
+
+                <form action="{{ route('admin.organizations.destroy', $organization) }}" method="POST" class="inline"
+                  onsubmit="return confirm('Are you sure you want to delete this organization?')">
+
+                  @csrf
+                  @method('DELETE')
+
+                  <button type="submit" class="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700">
+                    Delete
+                  </button>
+                </form>
 
               </td>
 
