@@ -83,6 +83,14 @@ Route::post('/admin/organizations', [OrganizationController::class, 'store'])
     ->middleware(['auth', 'role:admin'])
     ->name('admin.organizations.store');
 
+Route::get('/admin/organizations/{organization}/edit', [OrganizationController::class, 'edit'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.organizations.edit');
+
+Route::put('/admin/organizations/{organization}', [OrganizationController::class, 'update'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.organizations.update');
+
 
 
 Route::get('/student/dashboard', [DashboardController::class, 'student'])

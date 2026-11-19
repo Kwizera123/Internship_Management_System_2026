@@ -31,6 +31,7 @@
             <th class="px-6 py-4">Organization Type</th>
             <th class="px-6 py-4">Email</th>
             <th class="px-6 py-4">Phone</th>
+            <th class="px-6 py-4">Actions</th>
           </tr>
         </thead>
 
@@ -52,6 +53,17 @@
               <td class="px-6 py-4">
                 {{ $organization->phone }}
               </td>
+
+              <td class="px-6 py-4">
+                <a href="{{ route('admin.organizations.edit', $organization->id) }}"
+                  class="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+                  Edit
+                </a>
+
+              </td>
+
+              </td>
+
             </tr>
           @empty
             <tr>
