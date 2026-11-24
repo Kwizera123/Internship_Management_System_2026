@@ -25,12 +25,38 @@
 
     <form action="{{ route('admin.organizations') }}" method="GET" class="mt-6">
       <div class="flex gap-2">
+
         <input type="text" name="search" value="{{ request('search') }}" placeholder="Search organizations by name..."
           class="w-full rounded-lg border border-gray-300 px-4 py-3">
+
+        <select name="type" class="rounded-lg border border-gray-300 px-4 py-3">
+          <option value="">All Organization Types</option>
+
+          <option value="company" @selected(request('type') === 'company')>
+            Company
+          </option>
+
+          <option value="government" @selected(request('type') === 'government')>
+            Government
+          </option>
+
+          <option value="ngo" @selected(request('type') === 'ngo')>
+            NGO
+          </option>
+
+          <option value="educational_institution" @selected(request('type') === 'educational_institution')>
+            Educational Institution
+          </option>
+
+          <option value="other" @selected(request('type') === 'other')>
+            Other
+          </option>
+        </select>
 
         <button type="submit" class="rounded-lg bg-blue-600 px-5 py-3 text-white hover:bg-blue-700">
           Search
         </button>
+
       </div>
     </form>
 

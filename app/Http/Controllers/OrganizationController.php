@@ -15,6 +15,10 @@ class OrganizationController extends Controller
         $query->where('name', 'like', '%' . $request->search . '%');
     }
 
+    if ($request->filled('type')) {
+    $query->where('type', $request->type);
+    }
+
     $organizations = $query->orderBy('name')
         ->paginate(10);
 
