@@ -7,15 +7,21 @@ use App\Models\Organization;
 
 class OrganizationController extends Controller
 {
-    public function index()
-    {
-        $organizations = Organization::orderBy('name')
-            ->paginate(10);
+   public function index(Request $request)
+{
+    $query = Organization::query();
 
-        return view('admin.organizations', [
-            'organizations' => $organizations,
-        ]);
+    if ($request->filled('search')) {
+        $query->where('name', 'like', '%' . $request->search . '%');
     }
+
+    $organizations = $query->orderBy('name')
+        ->paginate(10);
+
+    return view('admin.organizations', [
+        'organizations' => $organizations,
+    ]);
+}
 
     public function create()
     {

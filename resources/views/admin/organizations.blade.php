@@ -23,6 +23,17 @@
       + Add Organization
     </a>
 
+    <form action="{{ route('admin.organizations') }}" method="GET" class="mt-6">
+      <div class="flex gap-2">
+        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search organizations by name..."
+          class="w-full rounded-lg border border-gray-300 px-4 py-3">
+
+        <button type="submit" class="rounded-lg bg-blue-600 px-5 py-3 text-white hover:bg-blue-700">
+          Search
+        </button>
+      </div>
+    </form>
+
     <div class="mt-8 overflow-hidden rounded-xl bg-white shadow">
       <table class="w-full text-left">
         <thead class="bg-gray-100">
@@ -79,8 +90,12 @@
             </tr>
           @empty
             <tr>
-              <td colspan="4" class="px-6 py-4 text-center">
-                No organizations registered yet.
+              <td colspan="5" class="px-6 py-4 text-center text-gray-500">
+                @if (request('search'))
+                  No organizations found matching "{{ request('search') }}".
+                @else
+                  No organizations registered yet.
+                @endif
               </td>
             </tr>
           @endforelse
