@@ -20,7 +20,8 @@ class OrganizationController extends Controller
     }
 
     $organizations = $query->orderBy('name')
-        ->paginate(10);
+    ->paginate(10)
+    ->withQueryString();
 
     return view('admin.organizations', [
         'organizations' => $organizations,

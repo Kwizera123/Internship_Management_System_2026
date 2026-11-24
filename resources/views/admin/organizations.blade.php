@@ -24,10 +24,10 @@
     </a>
 
     <form action="{{ route('admin.organizations') }}" method="GET" class="mt-6">
-      <div class="flex gap-2">
+      <div class="flex flex-wrap items-center gap-2">
 
         <input type="text" name="search" value="{{ request('search') }}" placeholder="Search organizations by name..."
-          class="w-full rounded-lg border border-gray-300 px-4 py-3">
+          class="min-w-0 flex-1 rounded-lg border border-gray-300 px-4 py-3">
 
         <select name="type" class="rounded-lg border border-gray-300 px-4 py-3">
           <option value="">All Organization Types</option>
@@ -57,7 +57,13 @@
           Search
         </button>
 
+        <a href="{{ route('admin.organizations') }}"
+          class="rounded-lg bg-gray-200 px-5 py-3 text-gray-700 hover:bg-gray-300">
+          Clear Filters
+        </a>
+
       </div>
+
     </form>
 
     <div class="mt-8 overflow-hidden rounded-xl bg-white shadow">
