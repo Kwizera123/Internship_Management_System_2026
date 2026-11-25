@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\InternshipOpportunityController;
 
 
 Route::get('/', [HomeController::class, 'index']);
@@ -95,6 +96,13 @@ Route::delete('/admin/organizations/{organization}', [OrganizationController::cl
     ->middleware(['auth', 'role:admin'])
     ->name('admin.organizations.destroy');
 
+Route::get('/admin/internship-opportunities', [InternshipOpportunityController::class, 'index'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.internship-opportunities');
+
+Route::get('/admin/internship-opportunities/create', [InternshipOpportunityController::class, 'create'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.internship-opportunities.create');
 
 
 

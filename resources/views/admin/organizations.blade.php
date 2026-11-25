@@ -18,6 +18,8 @@
       Manage organizations registered in the Internship Management System.
     </p>
 
+
+
     <a href="{{ route('admin.organizations.create') }}"
       class="mt-4 inline-block rounded-lg bg-slate-900 px-5 py-3 text-white hover:bg-slate-700">
       + Add Organization
