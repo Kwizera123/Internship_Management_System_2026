@@ -19,7 +19,7 @@
     </p>
 
     <div class="mt-6">
-      <a href="#"
+      <a href="{{ route('admin.internship-opportunities.create') }}"
         class="inline-block rounded-lg bg-blue-600 px-5 py-2 text-sm font-semibold text-white hover:bg-blue-700">
         + Create Opportunity
       </a>

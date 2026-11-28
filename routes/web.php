@@ -103,7 +103,10 @@ Route::get('/admin/internship-opportunities', [InternshipOpportunityController::
 Route::get('/admin/internship-opportunities/create', [InternshipOpportunityController::class, 'create'])
     ->middleware(['auth', 'role:admin'])
     ->name('admin.internship-opportunities.create');
-
+    
+Route::post('/admin/internship-opportunities', [InternshipOpportunityController::class, 'store'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.internship-opportunities.store');
 
 
 
